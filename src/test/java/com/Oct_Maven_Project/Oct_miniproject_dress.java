@@ -113,7 +113,7 @@ public class Oct_miniproject_dress {
 		File src4 = ts4.getScreenshotAs(OutputType.FILE);
 		File dest4 = new File("\\Users\\Lenovo\\eclipse-workspace\\Selenium_New\\seleniumclass\\screenshot\\srnshot3.png");
 		FileUtils.copyFile(src4, dest4);
-		buy.click();
+		buy.click();	
 
 		driver.findElement(By.xpath("//a[@class='button-exclusive btn btn-default']")).click();
 
