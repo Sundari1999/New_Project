@@ -1,10 +1,18 @@
 package com.Oct_Base;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -16,6 +24,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
 public class Base_Class {
+	public static String value;
 
 	public static WebDriver driver;
 
@@ -72,18 +81,18 @@ public class Base_Class {
 
 	}
 	
-	public static void selecting(WebElement element, String type, String vaule) {
+	public static void selecting(WebElement element, String type, String value) {
 		
 		Select s = new Select(element);
 		
 		if (type.equalsIgnoreCase("byValue")) {
-			s.selectByValue(vaule);	
+			s.selectByValue(value);	
 		}
 		else if (type.equalsIgnoreCase("byVisibleText")) {
-            s.selectByVisibleText(vaule);			
+            s.selectByVisibleText(value);			
 		}
 		else if (type.equalsIgnoreCase("byIndex")) {
-            int parseInt = Integer.parseInt(vaule);
+            int parseInt = Integer.parseInt(value);
             s.selectByIndex(parseInt);
 		}
 		
@@ -110,6 +119,27 @@ public class Base_Class {
 		js.executeScript("arguments[0].scrollIntoView();", element);
 
 
+	}
+	public static String particular_Data_fromExcel(String path, int sheet_num, int row_num, int cell_num) throws IOException {
+		
+		File f = new File(path);
+		FileInputStream fis = new FileInputStream(f);
+		Workbook wb =new XSSFWorkbook(fis);
+		Sheet sheetAt = wb.getSheetAt(sheet_num);
+		Row row = sheetAt.getRow(row_num);
+		Cell cell = row.getCell(cell_num);
+		CellType cellType = cell.getCellType();
+		if (cellType.equals(CellType.STRING)) {
+			 value = cell.getStringCellValue();
+			
+			
+		}
+		else if (cellType.equals(CellType.NUMERIC)) {
+			double numericCellValue = cell.getNumericCellValue();
+			 value = Double.toString(numericCellValue);
+		}
+		
+            return value;
 	}
 	
 	

@@ -15,7 +15,10 @@ public class Demo_Baseclass_Dress extends Base_Class {
 		String url = File_Reader_Manager.getInstanceFRM().getInstanceCR().getUrl();
 		get_URL(url);
 		clickOnElement(pom.getInstanceHp().getSignin());
-		String username = File_Reader_Manager.getInstanceFRM().getInstanceCR().getUsername();
+		
+		//String username = File_Reader_Manager.getInstanceFRM().getInstanceCR().getUsername();
+		String username = particular_Data_fromExcel("C:\\Users\\Lenovo\\Documents\\Testcase_dress purchase.xlsx", 0, 12, 5);
+		
 		inputValueElement(pom.getInstancelogin().getUsername(), username);
 		String password = File_Reader_Manager.getInstanceFRM().getInstanceCR().getPassword();
 		inputValueElement(pom.getInstancelogin().getPassword(), password);

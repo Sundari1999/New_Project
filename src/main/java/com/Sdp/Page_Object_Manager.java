@@ -88,16 +88,16 @@ public class Page_Object_Manager {
 	public Quickview_Page1 getInstanceQview() {
 		qv1 = new Quickview_Page1(driver);
 		return qv1;
-}
+	}
 	public Proceedto_Check1 getInstancePrcd() {
-		check_out1 = new Proceedto_Check1(driver);
+		check_out1 = new Proceedto_Check1(driver);  
 		return check_out1;
 	}
 	 public Summary_Proceed1 getInstanceSumm1() {
 		 proceed_summary = new Summary_Proceed1(driver);
 		 return proceed_summary;
 
-	}
+	     }
 	 public Address_Proceed1 getInstanceadd() {
 		 addcheckout = new Address_Proceed1(driver);
 		 return addcheckout;
